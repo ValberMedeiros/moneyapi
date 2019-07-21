@@ -1,6 +1,5 @@
 package com.algaworks.moneyapi.api.service;
 
-import com.algaworks.moneyapi.api.event.RecursoCriadoEvent;
 import com.algaworks.moneyapi.api.model.Pessoa;
 import com.algaworks.moneyapi.api.repository.PessoaRepository;
 import org.springframework.beans.BeanUtils;
