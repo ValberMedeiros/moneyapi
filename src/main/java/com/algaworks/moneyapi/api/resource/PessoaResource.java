@@ -63,6 +63,11 @@ public class PessoaResource {
         return ResponseEntity.ok(pessoaSalva);
     }
 
+    @PutMapping("/{codigo}/ativo")
+    public void atualizarProriedadeAtivo(@PathVariable Long codigo, @RequestBody Boolean ativo){
+        ps.atualizaPropriedadeAtivo(codigo, ativo);
+    }
+
     @DeleteMapping("/{codigo}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Long codigo){
