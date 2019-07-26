@@ -8,8 +8,6 @@ import com.algaworks.moneyapi.api.service.exception.PessoaInexistenteOuInativaEx
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class LancamentoService {
 

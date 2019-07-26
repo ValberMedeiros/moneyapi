@@ -7,7 +7,6 @@ import com.algaworks.moneyapi.api.repository.LancamentoRepository;
 import com.algaworks.moneyapi.api.repository.filter.LancamentoFilter;
 import com.algaworks.moneyapi.api.service.LancamentoService;
 import com.algaworks.moneyapi.api.service.exception.PessoaInexistenteOuInativaException;
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
