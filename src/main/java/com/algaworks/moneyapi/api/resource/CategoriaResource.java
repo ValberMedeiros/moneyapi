@@ -24,6 +24,7 @@ public class CategoriaResource {
     @Autowired
     private ApplicationEventPublisher publisher;
 
+    @CrossOrigin
     @GetMapping
     public List<Categoria> listar(){
         List<Categoria> categorias = cr.findAll();
