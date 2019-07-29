@@ -5,6 +5,7 @@ import com.algaworks.moneyapi.api.event.RecursoCriadoEvent;
 import com.algaworks.moneyapi.api.model.Lancamento;
 import com.algaworks.moneyapi.api.repository.LancamentoRepository;
 import com.algaworks.moneyapi.api.repository.filter.LancamentoFilter;
+import com.algaworks.moneyapi.api.repository.projection.ResumoLancamento;
 import com.algaworks.moneyapi.api.service.LancamentoService;
 import com.algaworks.moneyapi.api.service.exception.PessoaInexistenteOuInativaException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,12 @@ public class LancamentoResource {
     @PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
     public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter , Pageable pageable){
         return lr.filtrar(lancamentoFilter, pageable);
+    }
+
+    @GetMapping(params = "resumo")
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+    public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter , Pageable pageable){
+        return lr.resumir(lancamentoFilter, pageable);
     }
 
     @GetMapping("/{codigo}")
