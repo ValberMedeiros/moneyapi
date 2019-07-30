@@ -6,6 +6,8 @@ import com.algaworks.moneyapi.api.repository.PessoaRepository;
 import com.algaworks.moneyapi.api.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -28,13 +30,6 @@ public class PessoaResource {
 
     @Autowired
     private PessoaService ps;
-
-    @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
-    public List<Pessoa> listar(){
-        List<Pessoa> pessoas = (List<Pessoa>) pr.findAll();
-        return pessoas;
-    }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
@@ -76,5 +71,11 @@ public class PessoaResource {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletar(@PathVariable Long codigo){
         pr.deleteById(codigo);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_PESQUISAR_PESSOA')")
+    public Page<Pessoa> pesquisar(@RequestParam(required = false, defaultValue = "") String nome, Pageable pageable){
+        return pr.findByNomeContaining(nome, pageable);
     }
 }
