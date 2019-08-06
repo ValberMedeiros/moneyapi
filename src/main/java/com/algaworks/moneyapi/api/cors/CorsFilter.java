@@ -19,7 +19,8 @@ public class CorsFilter implements Filter {
     private MoneyApiProperty moneyApiProperty;
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
+            throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
@@ -27,15 +28,16 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", moneyApiProperty.getOriginPermitida());
         response.setHeader("Access-Control-Allow-Credentials", "true");
 
-        if("OPTIONS".equals(request.getMethod()) && moneyApiProperty.getOriginPermitida().equals(request.getHeader("Origin"))){
-            response.setHeader("Acces-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
-            response.setHeader("Acces-Control-Allow-Headers", "Authorization, Content-Type, Accept");
-            response.setHeader("Acces-Control-Max-Age", "3600");
+        if ("OPTIONS".equals(request.getMethod()) && moneyApiProperty.getOriginPermitida().equals(request.getHeader("Origin"))) {
+            response.setHeader("Access-Control-Allow-Methods", "POST, GET, DELETE, PUT, OPTIONS");
+            response.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
+            response.setHeader("Access-Control-Max-Age", "3600");
 
             response.setStatus(HttpServletResponse.SC_OK);
-        }else{
+        } else {
             chain.doFilter(req, resp);
         }
+
     }
 
     @Override
