@@ -3,6 +3,7 @@ package com.algaworks.moneyapi.api.resource;
 import com.algaworks.moneyapi.api.event.RecursoCriadoEvent;
 import com.algaworks.moneyapi.api.model.Pessoa;
 import com.algaworks.moneyapi.api.repository.PessoaRepository;
+import com.algaworks.moneyapi.api.repository.filter.PessoaFilter;
 import com.algaworks.moneyapi.api.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
