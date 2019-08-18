@@ -19,7 +19,6 @@ public class CustomTokenEnhancer implements TokenEnhancer {
         addInfo.put("nome", usuarioSistema.getUsuario().getNome());
 
         ((DefaultOAuth2AccessToken) oAuth2AccessToken).setAdditionalInformation(addInfo);
-
         return oAuth2AccessToken;
     }
 }

@@ -22,6 +22,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.Arrays;
 
+import java.util.Arrays;
+
 @Profile("oauth-security")
 @Configuration
 @EnableAuthorizationServer
@@ -61,11 +63,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         endpoints
                 .tokenStore(tokenStore())
+                .tokenEnhancer(tokenEnhancerChain)
                 .accessTokenConverter(accessTokenConverter())
                 .reuseRefreshTokens(false)
                 .tokenEnhancer(tokenEnhancerChain)
                 .userDetailsService(this.userDetailsService)
                 .authenticationManager(this.authenticationManager);
+    }
+
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return new CustomTokenEnhancer();
     }
 
     private TokenEnhancer tokenEnhancer() {
@@ -79,7 +87,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return accessTokenConverter;
     }
 
-    private TokenStore tokenStore() {
+    @Bean
+    public TokenStore tokenStore() {
         return new JwtTokenStore(accessTokenConverter());
     }
 }
